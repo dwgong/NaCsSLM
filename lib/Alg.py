@@ -11,11 +11,11 @@ class Alg:
         # find locations of target > 0
         idxs = np.where(target_amp > 0)
         target_locs = np.zeros(np.shape(target_amp))
-        target_locs[idxs] = 1
+        target_locs[idxs] = 1 # should we leave the option for a guassian trap?
         self.n_targets = len(idxs[0])
-        self.target_locs = target_locs;
+        self.target_locs = target_locs
         self.incident_amp = self.canvas.get_amp()
-        self.g_corr = np.ones_like(target_amp);
+        self.g_corr = np.ones_like(target_amp)
 
     def iterate(self, g_corr, fix_phase=0):
         # iteration of WGS. g_corr carries information from previous iterations
@@ -26,3 +26,4 @@ class Alg:
         fft_amp = np.abs(fft_field)
         mean_B = np.sum(np.multiply(fft_amp, self.target_locs)) / self.n_targets
         factor = np.divide(mean_B, fft_field, where=self.target_locs, out=np.ones_like(fft_field))
+        

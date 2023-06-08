@@ -9,7 +9,7 @@ class AlgConfig:
         self.phase_fixed_threshold = phase_fixed_threshold # 0 for a constantly evolving phase
 
     @staticmethod
-    def from_npy_file(self, fname):
+    def from_npy_file(fname):
         # compatibility with old format
         settings = np.load(fname).item()
         grid_sz = [settings['FFT grid size (bit)'], settings['FFT grid size (bit)']]
@@ -18,7 +18,7 @@ class AlgConfig:
         return AlgConfig(None, grid_sz, loop_count, phase_fixed_threshold)
 
     @staticmethod
-    def from_yml_file(self, fname, dev_name):
+    def from_yml_file(fname, dev_name):
         fhdl = open(fname, 'r')
         res = yaml.load(fhdl, Loader=yaml.FullLoader)
         fhdl.close()
